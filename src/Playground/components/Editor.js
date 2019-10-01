@@ -18,6 +18,7 @@ const Editor = ({ value, fontSize = 14, onChange, onLoad }) => {
       showPrintMargin={true}
       showGutter={true}
       highlightActiveLine={true}
+      width="auto"
       editorProps={{
         $blockScrolling: Infinity,
       }}
