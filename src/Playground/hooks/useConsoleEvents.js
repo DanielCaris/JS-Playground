@@ -24,15 +24,24 @@ const useConsoleEvents = () => {
       originalError.apply(console, arguments);
     };
     console.log = (...args) => {
-      addConsoleItem({ type: 'log', message: args.join(' ') });
+      addConsoleItem({
+        type: 'log',
+        message: args.map(m => JSON.stringify(m)).join(' '),
+      });
       originalLog.apply(console, args);
     };
     console.warn = function(...args) {
-      addConsoleItem({ type: 'warn', message: args.join(' ') });
+      addConsoleItem({
+        type: 'warn',
+        message: args.map(m => JSON.stringify(m)).join(' '),
+      });
       originalWarning.apply(console, args);
     };
     console.info = function(...args) {
-      addConsoleItem({ type: 'info', message: args.join(' ') });
+      addConsoleItem({
+        type: 'info',
+        message: args.map(m => JSON.stringify(m)).join(' '),
+      });
       originalInfo.apply(console, args);
     };
     console.clear = function(...args) {
