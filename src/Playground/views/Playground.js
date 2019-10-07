@@ -10,7 +10,8 @@ import useConsoleEvents from '../hooks/useConsoleEvents';
 import useExecuteCode from '../hooks/useExecuteCode';
 
 const Playground = () => {
-  const [code, setCode] = useState('');
+  const localCode = localStorage.getItem('code');
+  const [code, setCode] = useState(localCode || '');
   const [consoleItems, setConsoleItems] = useConsoleEvents();
   const [executeCode] = useExecuteCode(() => {
     setConsoleItems([]);
@@ -30,6 +31,7 @@ const Playground = () => {
             value={code}
             onChange={code => {
               setCode(code);
+              localStorage.setItem('code', code);
               executeCode(code);
             }}
           />
